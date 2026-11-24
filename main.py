@@ -48,6 +48,10 @@ def validate(line: str) -> None:
     rebuilt = build_line()
     if rebuilt != line:
         raise ValueError("line does not match a fresh rebuild from its parts")
+    if [len(part) for part in (OPENING, MIDDLE, ENDING)] != [38, 26, 22]:
+        raise ValueError("line parts changed size, so the assembled line drifted")
+    if line.count(" ") < 10:
+        raise ValueError("line lost words from its assembled parts")
 
 
 def main() -> None:
