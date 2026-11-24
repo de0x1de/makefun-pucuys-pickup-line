@@ -52,6 +52,8 @@ def validate(line: str) -> None:
         raise ValueError("line parts changed size, so the assembled line drifted")
     if line.count(" ") < 10:
         raise ValueError("line lost words from its assembled parts")
+    if line.count(",") != 1:
+        raise ValueError("line must contain exactly one comma, after the opening")
 
 
 def main() -> None:
